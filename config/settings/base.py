@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).ancestor(3)
 with open(BASE_DIR.child("secrets.json")) as file:
     secrets = json.loads(file.read())
 
+
 def get_secret(setting, secrets=secrets):
     """Get the secret variable or return explicit exception."""
     try:
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
+        'DIRS': [BASE_DIR.child("templates")]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

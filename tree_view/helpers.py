@@ -1,3 +1,6 @@
+from tree_view.db import database
+
+
 def assign_children(relations, skill_map, skill, keywords, index=0):
     if index < len(skill_map):
         if "name" not in relations:
