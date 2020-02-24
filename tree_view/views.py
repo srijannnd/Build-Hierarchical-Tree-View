@@ -7,7 +7,7 @@ from django.shortcuts import render
 import json
 
 
-# Create your views here.
+# Tree View API
 @api_view(["GET"])
 def generate_tree(request):
     try:
@@ -19,6 +19,7 @@ def generate_tree(request):
         return Response(status=status.HTTP_404_NOT_FOUND, data={"message": str(e), "success": False})
 
 
+# Tree View Template
 def generate_tree_view(request, company):
     try:
         company_obj = database["companies"].find_one({"alias": company})
