@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import json
+from django.core.exceptions import ImproperlyConfigured
+from unipath import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).ancestor(3)
 
+with open(BASE_DIR.child("secrets.json")) as file:
+    secrets = json.loads(file.read())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -56,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
+        'DIRS': [BASE_DIR.child("templates")]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
